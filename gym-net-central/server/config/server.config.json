@@ -1,0 +1,7 @@
+{
+  "serverPort" : 4200,
+  "defaultLogLevel" : "info",
+  "logsFileName" : "logs/all-logs.log",
+  "exceptionsLogFileName" : "logs/exceptions.log",
+  "databaseConnectionString": "mongodb://Admin:admin@ds137230.mlab.com:37230/gym-net-central"
+}

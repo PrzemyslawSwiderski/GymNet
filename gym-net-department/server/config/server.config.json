@@ -1,0 +1,9 @@
+{
+  "serverPort" : 4201,
+  "defaultLogLevel" : "info",
+  "logsFileName" : "logs/all-logs.log",
+  "exceptionsLogFileName" : "logs/exceptions.log",
+  "centralAddress" : "http://localhost:4200",
+  "databaseConnectionString": "mongodb://Admin:admin@ds137230.mlab.com:37230/gym-net-department",
+  "testDatabaseConnectionString": "mongodb://Admin:admin@ds137730.mlab.com:37730/gym-net-department-test"
+}
