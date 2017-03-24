@@ -1,0 +1,4 @@
+gym-net-central/logs/*
+/.idea/
+gym-net-department/logs/*
+*/node_modules
