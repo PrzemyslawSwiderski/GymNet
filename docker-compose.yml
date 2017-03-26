@@ -1,0 +1,22 @@
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  gym-net-central: # name of the first service
+    build: gym-net-central # specify the directory of the Dockerfile
+    ports:
+      - "4200:4200" # specify port forewarding
+
+  gym-net-department: #name of the second service
+    build: gym-net-department # specify the directory of the Dockerfile
+    ports:
+      - "4201:4201" #specify ports forewarding
+    links:
+      - gym-net-central # link this service to the central service
+
+  gym-net-web-client:
+    build: gym-net-web-client # specify the directory of the Dockerfile
+    ports:
+      - "8080:8080" #specify ports forewarding
+    links:
+      - gym-net-department # link this service to the rest-api service
