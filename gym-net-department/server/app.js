@@ -8,6 +8,7 @@ const config = require("./config/server.config.json");
 const logger = require("./initLogger");
 require("./dataAccess/dataAccessInit")();
 const app = express();
+
 const server = http.createServer(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

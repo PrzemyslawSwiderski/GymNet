@@ -12,7 +12,7 @@
     "_server:build": "npm run _server:copy-resources",
     "_server:copy-resources": "ncp server dist/server",
     "_server:run": "nodemon server/app.js",
-    "database:start":"mongod --dbpath=C:\\MongoDatabase\\gym-net-department"
+    "database:start": "mongod --dbpath=C:\\MongoDatabase\\gym-net-department"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "homepage": "",
   "dependencies": {
     "body-parser": "^1.16.1",
+    "cors": "^2.8.1",
     "express": "^4.14.1",
     "mongoose": "^4.9.1",
     "morgan": "^1.8.1",
