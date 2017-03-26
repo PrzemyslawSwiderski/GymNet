@@ -10,17 +10,24 @@ function initSocketIO() {
 
     var intervalTime = 1 * 1000 * 60; // minutes_number * ms * second = miliseconds number
 
-    var io = socketIO.connect(config.centralAddress + "/backupLine", {forceNew: true});
+    var central_address = process.env.CENTRAL_ADDRESS || config.centralAddress;
+
+    var io = socketIO.connect(central_address + "/backupLine", {forceNew: true});
 
     setInterval(function () {
         ClientModel.find({}, function (err, clients) {
             if (err) {
                 logger.error(err);
-                io.emit("backup", {date: new Date(), message: err, collectionData: clients});
+                io.emit("backup", {
+                    departmentIdentifier: config.departmentIdentifier,
+                    date: new Date(),
+                    message: err,
+                    collectionData: clients
+                });
                 return;
             }
             logger.info("Emitting Clients collection");
-            io.emit("backup", {date: new Date(), message: "Emitting Clients collection", collectionData: clients});
+            io.emit("backup", {departmentIdentifier: config.departmentIdentifier, date: new Date(), message: "Emitting Clients collection", collectionData: clients});
         });
     }, intervalTime);
 

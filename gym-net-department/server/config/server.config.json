@@ -1,4 +1,5 @@
 {
+  "departmentIdentifier":"TEST01",
   "serverPort" : 4201,
   "defaultLogLevel" : "info",
   "logsFileName" : "logs/all-logs.log",
