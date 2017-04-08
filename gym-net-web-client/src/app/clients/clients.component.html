@@ -1,14 +1,8 @@
-<h2>My Clients</h2>
-
-<ul class="heroes">
-  <li *ngFor="let client of clients">
-    <span class="badge">{{client._id}}</span>
-    <span>{{client.firstName}}</span>
-    <span>{{client.lastName}}</span>
-    <span>{{client.email}}</span>
-    <span>{{client.phoneNumber}}</span>
-    <button class="delete"
-            (click)="delete(client); $event.stopPropagation()">x
-    </button>
-  </li>
+﻿<h1>Clients</h1>
+<h3>All registered clients:</h3>
+<ul>
+    <li *ngFor="let client of clients">
+        {{client.email}} ({{client.firstName}} {{client.lastName}})
+        - <a (click)="deleteUser(client._id)">Delete</a>
+    </li>
 </ul>

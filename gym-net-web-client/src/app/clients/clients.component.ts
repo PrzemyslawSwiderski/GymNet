@@ -1,25 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import {ClientsService} from "../clients.service";
-import {Client} from "../client";
+﻿import {Component, OnInit} from '@angular/core';
+
+import {User} from '../_models/index';
+import {UserService} from '../_services/index';
 
 @Component({
-  selector: 'app-clients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.css']
+	moduleId: module.id.toString(),
+	templateUrl: 'clients.component.html'
 })
+
 export class ClientsComponent implements OnInit {
+	clients: User[] = [];
 
-  clients: Client[];
+	constructor(private userService: UserService) {
+	}
 
-  constructor(private clientsService: ClientsService) { }
+	ngOnInit() {
+		this.loadAllClients();
+	}
 
-  ngOnInit() {
-    this.getClients();
-  }
+	deleteUser(id: number) {
+		this.userService.delete(id).subscribe(() => {
+			this.loadAllClients()
+		});
+	}
 
-  getClients(): void {
-    this.clientsService
-    .getClients()
-    .then(clients => this.clients = clients);
-  }
+	private loadAllClients() {
+		this.userService.getBy({role: "CLIENT"}).subscribe(clients => {
+			this.clients = clients;
+		});
+	}
 }

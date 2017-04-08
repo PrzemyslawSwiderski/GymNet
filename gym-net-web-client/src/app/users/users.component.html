@@ -1,0 +1,8 @@
+﻿<h1>Users component!</h1>
+<h3>All registered users:</h3>
+<ul>
+    <li *ngFor="let user of users">
+        {{user.email}} ({{user.firstName}} {{user.lastName}})
+        - <a (click)="deleteUser(user._id)">Delete</a>
+    </li>
+</ul>
