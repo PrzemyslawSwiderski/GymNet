@@ -2,15 +2,12 @@
 
 const express = require("express");
 const http = require("http");
-const cors = require("cors");
 const bodyParser = require("body-parser");
 const publicRoutes = require("./routes/public");
 const config = require("./config/server.config.json");
 var logger = require("./initLogger");
 require("./dataAccess/dataAccessInit")();
 const app = express();
-
-app.use(cors());
 
 const server = http.createServer(app);
 app.use(bodyParser.json());

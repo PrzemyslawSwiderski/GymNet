@@ -1,7 +1,7 @@
 "use strict";
 
 const express = require("express");
-const clientRoutes = require("./clientRoutes");
+const userRoutes = require("./userRoutes");
 const reservationRoutes = require("./reservationRoutes");
 const publicRoutes = express.Router();
 publicRoutes.get("", function (request, response) {
@@ -11,6 +11,7 @@ publicRoutes.get("", function (request, response) {
     });
 });
 
-publicRoutes.use("/client",clientRoutes);
-publicRoutes.use("/reservation",reservationRoutes);
+publicRoutes.use("/user", userRoutes);
+publicRoutes.use("/reservation", reservationRoutes);
+
 exports.publicRoutes = publicRoutes;

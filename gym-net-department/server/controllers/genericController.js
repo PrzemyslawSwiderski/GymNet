@@ -24,17 +24,17 @@ function handleError(res, req) {
 function GenericController(model) {
 
     this.saveAll = function (req, res) {
-        var clients = req.body;
-        model.collection.insert(clients, handleError(res, req));
+        var users = req.body;
+        model.collection.insert(users, handleError(res, req));
     };
     this.create = function (req, res) {
-        var client = req.body;
-        model.create(client, handleError(res, req));
+        var user = req.body;
+        model.create(user, handleError(res, req)); // zapisanie usera w bazie
     };
     this.update = function (req, res) {
-        var client = req.body;
+        var user = req.body;
         var _id = req.params._id;
-        model.update({_id: _id}, client, handleError(res, req));
+        model.update({_id: _id}, user, handleError(res, req));
     };
     this.delete = function (req, res) {
         var _id = req.params._id;

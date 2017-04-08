@@ -3,10 +3,11 @@
 process.env.NODE_ENV = "test";
 
 const chai = require("chai");
+const consts = require("../server/dataAccess/models/consts");
 const should = chai.should();
 const mongoose = require("../server/dataAccess/dataAccessInit")();
 var logger = require("../server/initLogger");
-var Client = require("../server/dataAccess/models/clientModel");
+var User = require("../server/dataAccess/models/userModel");
 
 describe("Test Database Operations", function () {
 
@@ -18,29 +19,35 @@ describe("Test Database Operations", function () {
     }
 
     function populateDatabase(onInsert) {
-        var clients = [{
-            firstName: "client1",
+        var users = [{
+            firstName: "user1",
             lastName: "cfs",
             email: "test",
+            password: "pass",
             phoneNumber: 212332422,
             joinDate: new Date(),
             city: "test",
+            role: consts.USER_ROLE_ADMIN,
             street: "test",
             postalCode: "test"
         },
             {
-                firstName: "client2",
+                firstName: "user2",
                 lastName: "test",
                 email: "test",
+                password: "pass",
                 phoneNumber: 221132422,
                 joinDate: new Date(),
+                role: consts.USER_ROLE_CLIENT,
                 city: "test",
                 street: "test",
                 postalCode: "test"
             }, {
-                firstName: "client3",
+                firstName: "user3",
                 lastName: "test",
                 email: "test",
+                password: "pass",
+                role: consts.USER_ROLE_EMPLOYEE,
                 phoneNumber: 2132322,
                 joinDate: new Date(),
                 city: "test",
@@ -48,7 +55,7 @@ describe("Test Database Operations", function () {
                 postalCode: "test"
             }
         ];
-        Client.collection.insert(clients, onInsert);
+        User.collection.insert(users, onInsert);
     }
 
     beforeEach(function (done) {
@@ -63,28 +70,28 @@ describe("Test Database Operations", function () {
     });
 
     it("should be invalid if name is empty", function (done) {
-        var client = new Client();
+        var user = new User();
 
-        client.validate(function (err) {
+        user.validate(function (err) {
             err.errors.should.to.exist;
             logger.info("Proper lack of required fields");
             done();
         });
     });
 
-    it("it should save clients in database", function (done) {
+    it("it should save users in database", function (done) {
             populateDatabase(function () {
-                logger.info("Saved clients");
+                logger.info("Saved users");
                 done();
             });
         }
     );
 
-    it("it should list all clients in database", function (done) {
+    it("it should list all users in database", function (done) {
             populateDatabase(function () {
-                Client.find({}, function (err, docs) {
+                User.find({}, function (err, docs) {
                     if (err) return done(err);
-                    logger.info("Fetched clients are: "+docs);
+                    logger.info("Fetched users are: " + docs);
                     docs.length.should.equal(3);
                     done();
                 });
