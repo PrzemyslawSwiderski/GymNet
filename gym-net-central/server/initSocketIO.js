@@ -8,7 +8,6 @@ function initSocketIO(server) {
     logger.info("Initializing socketIO");
 
     const io = socketIO.listen(server);
-
     io.of("backupLine").on("connection", function (socket) {
         logger.info("A user connected to backup namespace");
         socket.on("disconnect", function () {
