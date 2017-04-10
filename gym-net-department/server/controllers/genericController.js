@@ -44,7 +44,8 @@ function GenericController(model) {
         model.find({}, handleError(res, req));
     };
     this.retrieveBy = function (req, res) {
-        model.find(req.query, handleError(res, req));
+        var query = JSON.parse(req.get('Query'));
+        model.find(query, handleError(res, req));
     };
     this.findById = function (req, res) {
         var _id = req.params._id;

@@ -5,7 +5,7 @@ import { UserService } from '../_services/index';
 
 @Component({
     moduleId: module.id.toString(),
-    templateUrl: 'users.component.html'
+    templateUrl: 'usersTable.component.html'
 })
 
 export class UsersComponent implements OnInit {

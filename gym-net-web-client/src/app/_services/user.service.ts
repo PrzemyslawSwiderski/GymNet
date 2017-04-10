@@ -15,15 +15,12 @@ export class UserService {
 		});
 	}
 
-	getBy(parametersToAdd: any) {
-		let params: URLSearchParams = new URLSearchParams();
-		for(let key in parametersToAdd) {
-			params.set(key, parametersToAdd[key]);
-		}
-
-		return this.http.get('/api/user', {search: params}).map((response: Response) => {
-			return response.json().result;
-		});
+	getBy(query: any) {
+		let headers = new Headers();
+		headers.append('Query', JSON.stringify(query));
+		return this.http.get('/api/user', {headers: headers}).map((response: Response) =>
+			response.json().result
+		);
 	}
 
 	getById(id: number) {

@@ -23,14 +23,20 @@ export class LoginComponent implements OnInit {
 		// reset login status
 		this.authenticationService.logout();
 
-		// get return url from route parameters or default to '/'
+		// get return url from route parameters or default to '/welcome'
 		this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/welcome';
 	}
 
 	login() {
 		this.loading = true;
 		this.authenticationService.login(this.model.email, this.model.password).subscribe(
-			data => {
+			users => {
+				let user = users[0];
+				if (user) {
+					localStorage.setItem('currentUser', JSON.stringify(user));
+				} else {
+					throw new Error('No user with the given Email and Password');
+				}
 				this.router.navigate([this.returnUrl]);
 			},
 			error => {
