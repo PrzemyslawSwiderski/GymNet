@@ -1,27 +1,15 @@
-﻿import {Injectable} from '@angular/core';
-import {URLSearchParams} from "@angular/http";
-import {Http, Headers, Response} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+﻿import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
+import "rxjs/add/operator/map";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class AuthenticationService {
-	constructor(private http: Http) {
+	constructor(private http: Http, private usersService: UserService) {
 	}
 
 	login(email: string, password: string) {
-		let params: URLSearchParams = new URLSearchParams();
-		params.set("email", email);
-		params.set("password", password);
-
-		return this.http.get('/api/user/', {search: params}).map((response: Response) => {
-			let user = response.json().result[0];
-			if (user) {
-				localStorage.setItem('currentUser', JSON.stringify(user));
-			}else {
-				throw new Error('No user with the given Email and Password');
-			}
-		});
+		return this.usersService.getBy({email: email, password: password});
 	}
 
 	logout() {

@@ -10,8 +10,10 @@ import {UserService} from '../_services/index';
 
 export class ClientsComponent implements OnInit {
 	clients: User[] = [];
+	currentUser: User;
 
 	constructor(private userService: UserService) {
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	}
 
 	ngOnInit() {
@@ -25,7 +27,7 @@ export class ClientsComponent implements OnInit {
 	}
 
 	private loadAllClients() {
-		this.userService.getBy({role: "CLIENT"}).subscribe(clients => {
+		this.userService.getBy({role: {$in: ['CLIENT']}}).subscribe(clients => {
 			this.clients = clients;
 		});
 	}

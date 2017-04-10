@@ -2,7 +2,7 @@
 <h3>All registered clients:</h3>
 <ul>
     <li *ngFor="let client of clients">
-        {{client.email}} ({{client.firstName}} {{client.lastName}})
-        - <a (click)="deleteUser(client._id)">Delete</a>
+        {{client.email}} {{client.firstName}} {{client.lastName}} {{client.role}}
+        - <a class="btn btn-danger btn-sm" style="color: white" (click)="deleteUser(client._id)">Delete</a>
     </li>
 </ul>
