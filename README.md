@@ -6,6 +6,7 @@ Backend:
 * Socket.io
 * Express
 * Docker
+
 Frontend:
 * Angular 2
 * Typescript
@@ -13,9 +14,13 @@ Frontend:
 
 ### How to run
 `npm install ./gym-net-central`
+
 `npm install ./gym-net-department`
+
 `npm install ./gym-net-web-client`
 
 `npm start ./gym-net-central`
+
 `npm start ./gym-net-department`
+
 `npm start ./gym-net-web-client`
